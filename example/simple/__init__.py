@@ -1,14 +1,16 @@
 from flask import jsonify
+from flask.ext.debugtoolbar import DebugToolbarExtension
 
 from rest_flask import RestFlask
+from rest_flask.core.api import api
 from rest_flask.extensions import oauth
 
 app = RestFlask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@host:5432/example'
-app.config['SECRET_KEY'] = 'secret'
+app.config.from_pyfile('setting.cfg')
 app.init_extensions()
 
-api = app.blueprints['api']
+debug_toolbar = DebugToolbarExtension()
+debug_toolbar.init_app(app)
 
 
 @api.route('/sample1')
@@ -17,7 +19,7 @@ def handle_sample1():
     return jsonify({'hello': 'world'})
 
 
-app.register_blueprint(api, url_prefix='/api/v1.0')
+app.register_core_blueprint(api=api, api_url_prefix='/api/v1.0')
 
 if __name__ == '__main__':
     app.run(debug=True)
