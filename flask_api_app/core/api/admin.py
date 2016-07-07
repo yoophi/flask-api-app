@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask.ext.admin.contrib import sqla
 
-from rest_flask.database import db
-from rest_flask.extensions import admin
+from flask_api_app.database import db
+from flask_api_app.extensions import admin
 from .models import Client, Token
 
 admin.add_view(sqla.ModelView(Client, session=db.session, name='Client'))

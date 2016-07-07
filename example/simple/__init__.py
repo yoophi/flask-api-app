@@ -1,11 +1,11 @@
 from flask import jsonify
 from flask.ext.debugtoolbar import DebugToolbarExtension
 
-from rest_flask import RestFlask
-from rest_flask.core.api import api
-from rest_flask.extensions import oauth
+from flask_api_app import FlaskApiApp
+from flask_api_app.core.api import api
+from flask_api_app.extensions import oauth
 
-app = RestFlask(__name__)
+app = FlaskApiApp(__name__)
 app.config.from_pyfile('setting.cfg')
 app.init_extensions()
 

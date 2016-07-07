@@ -11,10 +11,10 @@ from flask import request, render_template, redirect, jsonify
 from flask.ext.login import current_user, login_required
 from flask.ext.security.utils import verify_password
 
-from rest_flask.core.accounts.models import User
-# from rest_flask.core.api_1_0.response import api_response, error_response
-from rest_flask.database import db
-from rest_flask.extensions import oauth
+from flask_api_app.core.accounts.models import User
+# from flask_api_app.core.api_1_0.response import api_response, error_response
+from flask_api_app.database import db
+from flask_api_app.extensions import oauth
 from . import api
 from .models import Client, Grant, Token
 

@@ -1,4 +1,4 @@
-# RestFlask
+# FlaskApiApp
 
 회원 로그인 및 API 인증 기능 및 관리자페이지를 제공하는 Flask App 을 쉽게 만들 수 있도록 합니다.
 
@@ -7,11 +7,11 @@
 ```python
 from flask import jsonify
 
-from rest_flask import RestFlask
-from rest_flask.core.api import api
-from rest_flask.extensions import oauth
+from flask_rest_app import FlaskApiApp
+from flask_rest_app.core.api import api
+from flask_rest_app.extensions import oauth
 
-app = RestFlask(__name__)
+app = FlaskApiApp(__name__)
 
 @api.route('/sample')
 @oauth.require_oauth('email')

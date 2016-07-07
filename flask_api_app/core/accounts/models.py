@@ -2,7 +2,7 @@ from flask.ext.security import RoleMixin, UserMixin
 from sqlalchemy import UniqueConstraint, ForeignKey
 from sqlalchemy.orm import relationship
 
-from rest_flask.database import db, BaseMixin
+from flask_api_app.database import db, BaseMixin
 
 roles_users = db.Table('roles_users',
                        db.Column('user_id', db.Integer(), db.ForeignKey('users.id')),

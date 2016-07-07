@@ -7,8 +7,8 @@ from flask.ext.oauthlib.provider import OAuth2Provider
 from flask.ext.security import Security, SQLAlchemyUserDatastore
 from flask_bootstrap import Bootstrap
 
-from rest_flask.core.accounts.models import Role, User
-from rest_flask.database import db
+from flask_api_app.core.accounts.models import Role, User
+from flask_api_app.database import db
 
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(datastore=user_datastore)
