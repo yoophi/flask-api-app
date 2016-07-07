@@ -8,8 +8,8 @@ oauth implementation
 from datetime import datetime, timedelta
 
 from flask import request, render_template, redirect, jsonify
-from flask.ext.login import current_user, login_required
-from flask.ext.security.utils import verify_password
+from flask_login import current_user, login_required
+from flask_security.utils import verify_password
 
 from flask_api_app.core.accounts.models import User
 # from flask_api_app.core.api_1_0.response import api_response, error_response

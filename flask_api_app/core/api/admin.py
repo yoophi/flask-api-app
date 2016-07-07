@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask.ext.admin.contrib import sqla
+from flask_admin.contrib import sqla
 
 from flask_api_app.database import db
 from flask_api_app.extensions import admin

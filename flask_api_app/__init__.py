@@ -4,6 +4,8 @@ from flask_api_app.core.api import api as api_blueprint
 from flask_api_app.core.main import main as main_blueprint
 from flask_api_app.extensions import init_extensions
 
+__version__ = '0.0.1'
+
 
 class FlaskApiApp(Flask):
     def __init__(self, import_name, static_path=None, static_url_path=None, static_folder='static',

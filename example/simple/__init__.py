@@ -1,5 +1,5 @@
 from flask import jsonify
-from flask.ext.debugtoolbar import DebugToolbarExtension
+from flask_debugtoolbar import DebugToolbarExtension
 
 from flask_api_app import FlaskApiApp
 from flask_api_app.core.api import api
