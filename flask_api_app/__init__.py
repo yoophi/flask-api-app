@@ -4,7 +4,7 @@ from flask_api_app.core.api import api as api_blueprint
 from flask_api_app.core.main import main as main_blueprint
 from flask_api_app.extensions import init_extensions
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 
 class FlaskApiApp(Flask):
@@ -12,9 +12,6 @@ class FlaskApiApp(Flask):
                  template_folder='templates', instance_path=None, instance_relative_config=False):
         super(FlaskApiApp, self).__init__(import_name, static_path, static_url_path, static_folder, template_folder,
                                           instance_path, instance_relative_config)
-
-        self.register_blueprint(main_blueprint)
-        self.register_blueprint(api_blueprint)
 
     def init_extensions(self):
         init_extensions(self)
@@ -24,7 +21,7 @@ class FlaskApiApp(Flask):
         import flask_api_app.core.api.admin
 
     def register_core_blueprint(self, api=None, api_url_prefix='/api',
-                                main=None, main_url_prefix='/main'):
+                                main=None, main_url_prefix=''):
         from flask_api_app.core.api import api as api_blueprint
         from flask_api_app.core.main import main as main_blueprint
 
