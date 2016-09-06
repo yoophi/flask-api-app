@@ -38,8 +38,8 @@ def build_sample_db():
     """
     Populate a small db with some example entries.
     """
-    from flask.ext.api_app.core.accounts.models import User
-    from flask.ext.api_app.core.api.models import Client
+    from flask_api_app.core.accounts.models import User
+    from flask_api_app.core.api.models import Client
 
     db.drop_all()
     db.create_all()
