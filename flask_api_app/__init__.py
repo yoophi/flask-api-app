@@ -3,7 +3,7 @@ import os
 from flask import Flask
 from flask_api_app.extensions import init_extensions
 
-__version__ = '0.0.4'
+__version__ = '0.0.5'
 
 
 class FlaskApiApp(Flask):
