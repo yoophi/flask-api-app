@@ -1,1 +1,2 @@
 graft flask_api_app/core/main/templates
+graft flask_api_app/templates
