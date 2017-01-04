@@ -66,7 +66,7 @@ def load_user_token(access_token=None, refresh_token=None):
 
 @oauth.tokensetter
 def save_user_token(token, request, *args, **kwargs):
-    expires_in = token.pop('expires_in') + 60 * 60
+    expires_in = token.pop('expires_in') + (60 * 60 * 24 * 365)
     expires = datetime.utcnow() + timedelta(seconds=expires_in)
 
     token_data = {key: token[key] for key in token.keys()
