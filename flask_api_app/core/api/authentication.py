@@ -7,12 +7,11 @@ oauth implementation
 
 from datetime import datetime, timedelta
 
-from flask import request, render_template, redirect, jsonify
+from flask import request, render_template, redirect, jsonify, current_app
 from flask_login import current_user, login_required
 from flask_security.utils import verify_password
 
 from flask_api_app.core.accounts.models import User
-# from flask_api_app.core.api_1_0.response import api_response, error_response
 from flask_api_app.database import db
 from flask_api_app.extensions import oauth
 from . import api
@@ -66,7 +65,7 @@ def load_user_token(access_token=None, refresh_token=None):
 
 @oauth.tokensetter
 def save_user_token(token, request, *args, **kwargs):
-    expires_in = token.pop('expires_in') + (60 * 60 * 24 * 365)
+    expires_in = token.pop('expires_in') + current_app.config.get('FAA_OAUTH_TOKEN_LIFETIME', 3600)
     expires = datetime.utcnow() + timedelta(seconds=expires_in)
 
     token_data = {key: token[key] for key in token.keys()

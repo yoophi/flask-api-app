@@ -27,3 +27,8 @@ if __name__ == '__main__':
 
 간단한 사용 예제가 `/example` 에 들어있으니 확인해보세요.
 
+## CONFIG
+
+OAuth Token 의 수명주기
+
+    FAA_OAUTH_TOKEN_LIFETIME: 3600
