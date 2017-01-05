@@ -4,6 +4,7 @@ from __future__ import print_function, unicode_literals
 from flask import redirect
 from flask_admin import AdminIndexView, expose
 from flask_admin.contrib.sqla import ModelView
+from flask_admin.form import rules
 from flask_login import current_user
 from flask_security import url_for_security
 from markupsafe import Markup
@@ -62,3 +63,15 @@ def get_or_create(session, model, **kwargs):
         instance = model(**kwargs)
         session.add(instance)
         return instance
+
+
+class FlaskApiAppIndexView(ProtectedAdminIndexView):
+    pass
+
+
+def form_description(text):
+    tpl = '<div class="control-group" style="margin-top: -1em">' \
+          '<div class="control-label"></div>' \
+          '<div class="controls">{text}</div></div>'
+
+    return rules.HTML(tpl.format(text=text))

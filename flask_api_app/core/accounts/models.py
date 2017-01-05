@@ -1,8 +1,7 @@
-from flask_api_app.database import db, BaseMixin
-from flask_security import RoleMixin, UserMixin
-from flask_security.utils import encrypt_password
 from sqlalchemy import UniqueConstraint, ForeignKey
 from sqlalchemy.orm import relationship
+
+from flask_api_app.database import db, BaseMixin, RoleMixin, UserMixin
 
 roles_users = db.Table('roles_users',
                        db.Column('user_id', db.Integer(), db.ForeignKey('users.id')),
@@ -15,16 +14,6 @@ class Role(db.Model, RoleMixin):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(80), unique=True)
     description = db.Column(db.String(255))
-
-    @classmethod
-    def createrole(cls, session, name, description=''):
-        role = cls(name=name, description=description)
-        session.add(role)
-
-        return role
-
-    def __repr__(self):
-        return '<{self.__class__.__name__}:{self.name}>'.format(self=self)
 
 
 class User(db.Model, UserMixin):
@@ -44,31 +33,6 @@ class User(db.Model, UserMixin):
     current_login_at = db.Column(db.DateTime())
     current_login_ip = db.Column(db.String(255))
     login_count = db.Column(db.Integer)
-
-    @property
-    def has_admin_privs(self):
-        for role in self.roles:
-            if role.name.lower() == 'admin':
-                return True
-
-        return False
-
-    @classmethod
-    def createuser(self, session, email, password, roles=None):
-        user = User(email=email, active=True)
-        user.set_password(password)
-
-        if roles:
-            user.roles = roles
-
-        session.add(user)
-        return user
-
-    def set_password(self, password):
-        self.password = encrypt_password(password)
-
-    def __repr__(self):
-        return '<{self.__class__.__name__}:{self.email}>'.format(self=self)
 
 
 class Relationship(db.Model, BaseMixin):

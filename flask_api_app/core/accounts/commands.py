@@ -1,5 +1,4 @@
 # coding: utf-8
-
 from __future__ import unicode_literals, print_function
 
 import sys
@@ -7,7 +6,6 @@ import sys
 from flask import current_app
 from flask_script import prompt, prompt_pass, prompt_choices
 
-from .models import Role, User
 from ...database import db
 from ...helpers import get_or_create
 from ...manage import Manager
@@ -20,6 +18,7 @@ manager = Manager(current_app)
 @manager.option('-d', '--description', help='Role description')
 def createrole(name=None, description=None):
     """Create a role"""
+    Role = current_app.RoleModel
 
     if not name:
         name = prompt("Role Name")
@@ -45,6 +44,8 @@ def createrole(name=None, description=None):
 @manager.option('-p', '--password', help='User password')
 def createsuperuser(email=None, password=None):
     """Create a supersuer"""
+    Role = current_app.role_model
+    User = current_app.user_model
 
     if not email:
         email = prompt("A valid email address")
@@ -68,6 +69,7 @@ def createsuperuser(email=None, password=None):
 @manager.option('-r', '--role', help='User role')
 def createuser(email=None, password=None, role=None):
     """Create a user"""
+    Role = current_app.RoleModel
 
     if not email:
         email = prompt("A valid email address")
@@ -100,6 +102,8 @@ def createuser(email=None, password=None, role=None):
 @manager.option('-p', '--password', help='User password')
 def modifypassword(email=None, password=None):
     """비밀번호 변경"""
+
+    User = current_app.user_model
 
     if not email:
         email = prompt("A valid email address")
