@@ -2,9 +2,9 @@
 from flask import request, render_template, redirect, current_app
 from flask_login import login_required, current_user
 
-from flask_api_app.extensions import oauth
 from . import api
 from .models import Client
+from ...extensions import oauth
 
 
 def get_current_user():

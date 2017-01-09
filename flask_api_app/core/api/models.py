@@ -1,7 +1,7 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, synonym
 
-from flask_api_app.database import db
+from ...database import db
 
 
 class Client(db.Model):

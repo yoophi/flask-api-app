@@ -1,5 +1,4 @@
-from flask import Blueprint, current_app
-from flask.ext.login import current_user
+from flask import Blueprint
 
 api = Blueprint('api', __name__)
 

@@ -85,8 +85,8 @@ class FlaskApiApp(Flask):
 
     def register_core_blueprint(self, api=None, api_url_prefix='/api',
                                 main=None, main_url_prefix=''):
-        from flask_api_app.core.api import api as api_blueprint
-        from flask_api_app.core.main import main as main_blueprint
+        from .core.api import api as api_blueprint
+        from .core.main import main as main_blueprint
 
         api_blueprint = api or api_blueprint
         main_blueprint = main or main_blueprint
@@ -94,7 +94,7 @@ class FlaskApiApp(Flask):
         admin.add_view(self.user_admin_view(self.user_model, session=db.session, name='User', category='User'))
         admin.add_view(self.role_admin_view(self.role_model, session=db.session, name='Role', category='User'))
 
-        import flask_api_app.core.api.admin
+        from .core.api import admin as api_admin
 
         self.register_blueprint(api_blueprint, url_prefix=api_url_prefix)
         self.register_blueprint(main_blueprint, url_prefix=main_url_prefix)

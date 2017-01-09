@@ -1,7 +1,7 @@
 from sqlalchemy import UniqueConstraint, ForeignKey
 from sqlalchemy.orm import relationship
 
-from flask_api_app.database import db, BaseMixin, RoleMixin, UserMixin
+from ...database import db, BaseMixin, RoleMixin, UserMixin
 
 roles_users = db.Table('roles_users',
                        db.Column('user_id', db.Integer(), db.ForeignKey('users.id')),
