@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from flask import Flask
 from flask_security import SQLAlchemyUserDatastore
 from wtforms import StringField
 from wtforms.widgets import PasswordInput
-
 from .database import db
 from .extensions import admin, security, mail, oauth
 from .helpers import ProtectedModelView, form_description
@@ -25,11 +23,15 @@ class UserAdminView(ProtectedModelView):
     form_rules = (
         'username', 'email', 'roles', 'active', 'dob', 'gender',
         'newpassword', form_description('비밀번호를 새로 지정하실 때만 입력해주세요.'),
-        'confirmed_at', 'current_login_at', 'current_login_ip', 'login_count',)
+        'confirmed_at',)
 
     form_extra_fields = {
         "newpassword": StringField(widget=PasswordInput())
     }
+
+    def _show_missing_fields_warning(self, text):
+        # suppress missing fields warning
+        pass
 
     def on_model_change(self, form, model, **kwargs):
         if model.newpassword:
