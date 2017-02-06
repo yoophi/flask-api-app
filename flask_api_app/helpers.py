@@ -70,8 +70,8 @@ class FlaskApiAppIndexView(ProtectedAdminIndexView):
 
 
 def form_description(text):
-    tpl = '<div class="control-group" style="margin-top: -1em">' \
-          '<div class="control-label"></div>' \
-          '<div class="controls">{text}</div></div>'
+    tpl = '<div class="row" style="margin-top: -0.5em; margin-bottom: 1em;">' \
+          '<div class="col-md-10 col-md-offset-2">{text}</div>' \
+          '</div>'
 
     return rules.HTML(tpl.format(text=text))

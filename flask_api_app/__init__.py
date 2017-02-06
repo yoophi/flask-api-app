@@ -59,6 +59,7 @@ class FlaskApiApp(Flask):
 
     def init_extensions(self, user_model=None, role_model=None, user_admin_view=None, role_admin_view=None):
         db.init_app(self)
+
         admin.init_app(self)
 
         if not role_model:
