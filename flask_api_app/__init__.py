@@ -49,17 +49,19 @@ class RoleAdminView(ProtectedModelView):
 
 class FlaskApiApp(Flask):
     def __init__(self, import_name, static_path=None, static_url_path=None, static_folder='static',
-                 template_folder='templates', instance_path=None, instance_relative_config=False):
+                 template_folder='templates', instance_path=None, instance_relative_config=False, admin_theme='bootstrap3'):
         super(FlaskApiApp, self).__init__(import_name, static_path, static_url_path, static_folder, template_folder,
                                           instance_path, instance_relative_config)
         self.role_model = None
         self.user_model = None
         self.role_admin_view = None
         self.user_admin_view = None
+        self.admin_theme = admin_theme
 
     def init_extensions(self, user_model=None, role_model=None, user_admin_view=None, role_admin_view=None):
         db.init_app(self)
 
+        admin.template_mode = self.admin_theme
         admin.init_app(self)
 
         if not role_model:
