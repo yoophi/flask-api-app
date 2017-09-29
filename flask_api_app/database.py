@@ -7,6 +7,15 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
+class PkMixin(object):
+    id = db.Column(db.Integer, primary_key=True)
+    created_at = db.Column('created_at', db.DateTime, nullable=False,
+                           default=datetime.now)
+
+    def __repr__(self):
+        return '<{self.__class__.__name__}:{self.id}>'.format(self=self)
+
+
 class BaseMixin(object):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column('created_at', db.DateTime, nullable=False,
